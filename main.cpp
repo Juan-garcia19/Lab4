@@ -9,11 +9,13 @@ using namespace std;
 
 void lecturaCaminos(char router, vector<string> NomConexRuter,vector<int> valConexRuter, string caminoRecorrido, char destino,char copi,char an,int ValorCami,int &B,string &caminoMayor);
 string LectuArchi(vector<string> &NomConexRuter,vector<int> &valConexRuter);
-
 void Actualizacion(vector<string> &NomConexRuter,vector<int> &valConexRuter,map <char,vector<string>> &routers);
+
+
 void IngresoManualRouters(vector<string> &NomConexRuter, vector<int> &valConexRuter);
 void borrarConexiones(vector<string> &NomConexRuter, vector<int> &valConexRuter);
 void borrarRouter(vector<string> &NomConexRuter, vector<int> &valConexRuter);
+void cambioValorConex(vector<string> &NomConexRuter, vector<int> &valConexRuter);
 
 int main()
 {
@@ -26,6 +28,24 @@ int main()
     map <char,vector<string>> routers;
 
     //IngresoManualRouters(NomConexRuter,valConexRuter);
+    string conexion;
+    int valorCam=0;
+    int longitud=NomConexRuter.size();
+
+    cout<<"para cambiar el valor de alguna conexion ingrese: "<<endl;
+    cout<<"<enturador+enrutador al que esta conectado>"<<endl;
+    cout<<"ejemplo AB: "<<endl;
+    cout<<"==> ";cin>>conexion;
+    cout<<"Valor entre la conexion: ";cin>>valorCam;
+
+
+    for(int i=0;i<longitud;i++){
+        if(NomConexRuter[i]==conexion){
+            valConexRuter[i]=valorCam;
+        }
+    }
+
+
 
 
 
@@ -323,4 +343,24 @@ void borrarRouter(vector<string> &NomConexRuter, vector<int> &valConexRuter){
             iter++;}
     }
 }
+}
+
+void cambioValorConex(vector<string> &NomConexRuter, vector<int> &valConexRuter){
+    string conexion;
+    int valorCam=0;
+    int longitud=NomConexRuter.size();
+
+    cout<<"para cambiar el valor de alguna conexion ingrese: "<<endl;
+    cout<<"<enturador+enrutador al que esta conectado>"<<endl;
+    cout<<"ejemplo AB: "<<endl;
+    cout<<"==> ";cin>>conexion;
+    cout<<"Valor entre la conexion: ";cin>>valorCam;
+
+
+    for(int i=0;i<longitud;i++){
+        if(NomConexRuter[i]==conexion){
+            valConexRuter[i]=valorCam;
+        }
+    }
+
 }
