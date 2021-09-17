@@ -4,6 +4,15 @@
 #include "enrutador.h"
 #include "modelarred.h"
 
+
+/*
+ *este algoritmo tiene ciertos parametros restrictivos
+ *1. hay diferencia entre mayusculas y minusculas
+ *2.a la hora de crear routers hacerlos de un solo caracter, es decir
+ *si va a haber conexion entre un enrutador y otro que ambos enrutadores sean de un caracter
+ *ejemplo: A B etc
+*/
+
 using namespace std;
 
 

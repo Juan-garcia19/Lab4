@@ -1,0 +1,12 @@
+AB,4
+AE,1
+AC,10
+BA,4
+BE,3
+BD,1
+CA,10
+CD,2
+DB,1
+DC,2
+EA,1
+EB,3
