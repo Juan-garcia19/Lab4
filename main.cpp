@@ -12,8 +12,6 @@ int main()
 
     Enrutador ruter;
     ModelarRed Manejored;
-    vector <int> valConexRuter ={4,10,4,3,1,10,2,1,2,1,3,1};
-    vector <string> NomConexRuter = {"AB","AC","BA","BE","BD","CA","CD","DB","DC","EA","EB","AE"};
 
     unsigned int opcion=0;
 

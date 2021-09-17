@@ -1,6 +1,5 @@
-#ifndef ENRUTADOR_H
-#define ENRUTADOR_H
-#include <iostream>
+#ifndef MODELARRED_H
+#define MODELARRED_H
 #include <vector>
 #include <map>
 #include <fstream>
@@ -8,18 +7,21 @@
 
 using namespace std;
 
-class Enrutador
+class ModelarRed
 {
 public:
-    Enrutador();
+    ModelarRed();
 
-    void lecturaCaminos(char router, string caminoRecorrido, char destino,char copi,char an,int ValorCami,int &B,string &caminoMayor);
-
-    void LectuArchi();
-
-    void Actualizacion();
 
     void IngresoManualRouters();
+
+    void borrarConexiones();
+
+    void borrarRouter();
+
+    void cambioValorConex();
+
+    void mostrarCamino(char inicio,string destino);
 
     vector<int> getValConexRuter() const;
     void setValConexRuter(const vector<int> &value);
@@ -36,8 +38,7 @@ private:
     vector <string> NomConexRuter;
 
     map <char,vector<string>> routers;
+
 };
 
-
-
-#endif // ENRUTADOR_H
+#endif // MODELARRED_H

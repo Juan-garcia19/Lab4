@@ -31,7 +31,7 @@ void Enrutador::lecturaCaminos(char router, string caminoRecorrido, char destino
                 if(ValorCami<B){
                     B=ValorCami;
                     caminoMayor=caminoRecorrido;
-                    cout<<"el camino es: "<<caminoMayor<<" y el valor es "<<B<<endl;
+
                     ValorCami-=valConexRuter[i];
                     caminoRecorrido.pop_back();
                     caminoRecorrido.pop_back();
@@ -55,6 +55,56 @@ void Enrutador::lecturaCaminos(char router, string caminoRecorrido, char destino
             }
         }
     }
+}
+
+void Enrutador::LectuArchi()
+{
+    string data;
+
+    // Abre el archivo en modo lectura
+    ifstream infile;
+
+    // Se pone de manera explicita la ruta relativa donde se encuentra el archivo
+    infile.open("../Lab4/BD/Enrutadores.txt");
+
+    if (!infile.is_open())
+    {
+      cout << "Error abriendo el archivo" << endl;
+      exit(1);
+    }
+    infile >> data;
+
+    string linea;
+
+    while(!infile.eof()){
+        string conexionRuter,ValorConex;
+        getline(infile,linea);
+        if (linea ==""){
+            linea=data;
+        }
+
+        int longitud =linea.length();
+        int separador=0;
+        for (int i =0;i < longitud;i++){
+            if (linea[i]==','){
+                separador++;
+            }
+            else if(separador==0){
+                conexionRuter+=linea[i];
+
+            }
+            else if(separador==1){
+                ValorConex+=linea[i];
+            }
+        }
+
+        NomConexRuter.push_back(conexionRuter);
+        valConexRuter.push_back(stoi(ValorConex));
+
+    }
+
+    // Se cierra el archivo abierto
+    infile.close();
 }
 
 void Enrutador::Actualizacion()
@@ -84,4 +134,92 @@ void Enrutador::Actualizacion()
         }
     }
 
+}
+
+void Enrutador::IngresoManualRouters()
+{
+    cout<<"para agregar un enrutador a la red debe ingresar las conexiones con los demas routers "<<endl;
+    cout<<"la siguiente manera: "<<endl;
+    cout<<"<enturador+enrutador al que esta conectado>,< , >,<valor que tendra la conexion>"<<endl;
+    cout<<"Ejemplo: AB,7"<<endl;
+    cout<<"para dejar de ingresar conexiones entre routers ingrese la letra 'n' "<<endl;
+
+
+    while (true){
+        int longitud=NomConexRuter.size();
+        for(int i=0;i<longitud;i++){
+            cout<<" [ "<<NomConexRuter[i]<<" ] ";
+        }
+        string linea,conexionRuter,ValorConex;
+
+
+        cout<<"==> ";
+        cin>>linea;
+
+        if (linea == "n"){
+            break;
+        }
+        else{
+            int separador=0,longitud=linea.size();
+            for (int i =0;i < longitud;i++){
+                if (linea[i]==','){
+                    separador++;
+                }
+                else if(separador==0){
+
+                    conexionRuter+=linea[i];
+
+                }
+                else if(separador==1){
+                    ValorConex+=linea[i];
+                }
+            }
+            int cont=0;
+            int longitudVector=NomConexRuter.size();
+            for(int i =0;i<longitudVector;i++){
+                if (NomConexRuter[i] == conexionRuter){
+                    cont++;
+                }
+
+            }
+            if(cont==0){
+                NomConexRuter.push_back(conexionRuter);
+                valConexRuter.push_back(stoi(ValorConex));
+            }
+            else{
+                cout<<"Ingreso no valido, las conexiones estan repetidas"<<endl;
+            }
+
+        }
+    }
+}
+
+vector<int> Enrutador::getValConexRuter() const
+{
+    return valConexRuter;
+}
+
+void Enrutador::setValConexRuter(const vector<int> &value)
+{
+    valConexRuter = value;
+}
+
+vector<string> Enrutador::getNomConexRuter() const
+{
+    return NomConexRuter;
+}
+
+void Enrutador::setNomConexRuter(const vector<string> &value)
+{
+    NomConexRuter = value;
+}
+
+map<char, vector<string> > Enrutador::getRouters() const
+{
+    return routers;
+}
+
+void Enrutador::setRouters(const map<char, vector<string> > &value)
+{
+    routers = value;
 }
