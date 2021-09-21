@@ -22,24 +22,24 @@ int main()
     Enrutador ruter;
     ModelarRed Manejored;
 
-    unsigned int opcion=0;
+    unsigned int opcion=1;
 
 
     cout<<"como desea optener la red de enrutadores?"<<endl;
     cout<<"introduzca el numero que le aparece en pantalla para ingresar: "<<endl;
-    cout<<"0. archivo.txt"<<endl;
-    cout<<"1.ingresarlo a mano"<<endl;
+    cout<<"1. archivo.txt"<<endl;
+    cout<<"2.ingresarlo a mano"<<endl;
     cout<<">> ";cin>>opcion;
-    if(opcion ==0){
+    if(opcion ==1){
         ruter.LectuArchi();
         ruter.Actualizacion();
     }
-    else if(opcion == 1){
+    else if(opcion == 2){
         ruter.IngresoManualRouters();
         ruter.Actualizacion();
     }
 
-    while(true){
+    while(opcion!=0){
 
         cout<<"introduzca el numero que le aparece en pantalla para ingresar: "<<endl;
         cout<<"1. Ingresar nuevas conexiones o routers"<<endl;
@@ -51,10 +51,6 @@ int main()
         cout<<"==> ";cin>>opcion;
 
         switch(opcion){
-            case 0:
-               break;
-
-            break;
             case 1:
                 Manejored.setNomConexRuter(ruter.getNomConexRuter());
                 Manejored.setValConexRuter(ruter.getValConexRuter());
